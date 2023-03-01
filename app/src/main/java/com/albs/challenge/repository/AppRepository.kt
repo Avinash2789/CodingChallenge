@@ -18,7 +18,7 @@ class AppRepository @Inject constructor(
     private val application: Application
 ) {
 
-    suspend fun getMeaningsFromServer(searchText: String): Boolean {
+    private suspend fun getMeaningsFromServer(searchText: String): Boolean {
         val response = apiService.getMeanings(searchText)
         if (!response.body().isNullOrEmpty()) {
             val meaningData = MeaningData(searchText, response.body()!![0])

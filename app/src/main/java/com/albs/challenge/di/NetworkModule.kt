@@ -34,10 +34,10 @@ object NetworkModule {
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
 
-        okHttpClient.callTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.connectTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.readTimeout(40, TimeUnit.SECONDS)
-        okHttpClient.writeTimeout(40, TimeUnit.SECONDS)
+        okHttpClient.callTimeout(60, TimeUnit.SECONDS)
+        okHttpClient.connectTimeout(60, TimeUnit.SECONDS)
+        okHttpClient.readTimeout(60, TimeUnit.SECONDS)
+        okHttpClient.writeTimeout(60, TimeUnit.SECONDS)
         okHttpClient.addInterceptor(loggingInterceptor)
         return okHttpClient.build()
     }

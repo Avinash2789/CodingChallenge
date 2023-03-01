@@ -1,8 +1,10 @@
 package com.albs.challenge.repository
 
 import android.app.Application
+import com.albs.challenge.R
 import com.albs.challenge.database.AppDao
 import com.albs.challenge.model.Lfs
+import com.albs.challenge.model.MeaningData
 import com.albs.challenge.model.MeaningsResponse
 import com.albs.challenge.network.ApiService
 import com.albs.challenge.utils.Resource
@@ -79,23 +81,31 @@ class AppRepositoryTest {
 
     @Test
     fun getAllMeanings_returns_success() {
-        val serverResponse: Response<ArrayList<MeaningsResponse>> = Response.success(arrayListOf(meaningsResponse))
+        val serverResponse: Response<ArrayList<MeaningsResponse>> =
+            Response.success(arrayListOf(meaningsResponse))
+        val meaningData = MeaningData(sf, serverResponse.body()!![0])
         every { Utils.checkForInternet(appContext) }.returns(true)
         runBlocking {
+            coEvery { dao.fetch(sf) }.answers { null }
+            coEvery { dao.insert(meaningData) }.answers { 1 }
             coEvery { apiService.getMeanings(sf) }.returns(serverResponse)
-            val responseSuccess = repository.getAllMeanings(sf)
-            Assertions.assertTrue(responseSuccess is Resource.Success)
+            coEvery { dao.fetch(sf) }.answers { meaningData }
+            val resourceResponse = repository.getAllMeanings(sf)
+            Assertions.assertTrue(resourceResponse is Resource.Success)
         }
-
     }
 
     @Test
-    fun getAllMeanings_returns_unSuccess() {
+    fun getAllMeanings_returns_error() {
         every { Utils.checkForInternet(appContext) }.returns(true)
+        every { appContext.getString(R.string.no_data_found) }.returns("No Data Found")
+
         runBlocking {
+            coEvery { dao.fetch(sf) }.answers { null }
             coEvery { apiService.getMeanings(sf) }.returns(errorResponse)
-            val responseSuccess = repository.getAllMeanings(sf)
-            Assertions.assertTrue(responseSuccess is Resource.Success)
+            coEvery { dao.fetch(sf) }.answers { null }
+            val resourceResponse = repository.getAllMeanings(sf)
+            Assertions.assertTrue(resourceResponse is Resource.Error)
         }
     }
 }
