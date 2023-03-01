@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="padding_16_dp">16dp</dimen>
+    <dimen name="padding_12_dp">12dp</dimen>
+    <dimen name="padding_10_dp">10dp</dimen>
+    <dimen name="padding_0_dp">0dp</dimen>
+    <dimen name="padding_8_dp">8dp</dimen>
+    <dimen name="test_size_16_sp">16sp</dimen>
+    <dimen name="width_100_dp">100sp</dimen>
+    <dimen name="width_300_dp">300sp</dimen>
+
+</resources>

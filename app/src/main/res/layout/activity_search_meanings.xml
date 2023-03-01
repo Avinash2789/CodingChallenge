@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_12_dp"
+        tools:context=".search_meanings.SearchMeaningsActivity">
+
+        <EditText
+            android:id="@+id/edit_acronym"
+            android:layout_width="@dimen/padding_0_dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_12_dp"
+            android:layout_marginEnd="@dimen/padding_12_dp"
+            android:background="@drawable/custom_edit_text"
+            android:hint="@string/enter_text"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/padding_12_dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btn_submit"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_12_dp"
+            android:text="@string/search"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_acronym"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edit_acronym" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_0_dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_acronym">
+
+            <include layout="@layout/shimmer_layout" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_0_dp"
+            android:layout_marginTop="@dimen/padding_12_dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_acronym" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

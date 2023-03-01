@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Find Meanings</string>
+
+    <string name="no_data_found">No data found</string>
+    <string name="not_connected_to_internet">Not connected to internet</string>
+    <string name="meaning_data">MeaningData</string>
+    <string name="enter_text">Enter text</string>
+    <string name="search">Search</string>
+    <string name="minimum_2_character">Minimum 2 characters required to search</string>
+
+</resources>
